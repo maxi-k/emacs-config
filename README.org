@@ -1,0 +1,10 @@
+#+TITLE: Emacs-Config
+#+AUTHOR: Maximilian Kuschewski
+#+OPTIONS: toc:nil date:nil
+#+LaTeX_HEADER:\usepackage[margin=3cm]{geometry}
+#+LaTeX_HEADER:\usepackage{setspace}
+\onehalfspacing
+
+A bunch of elisp I use to bootstrap my emacs configuration.
+It compiles org-mode files in different formats into .elc files which then get
+loaded and some other stuff.
