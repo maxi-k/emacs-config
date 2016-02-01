@@ -9,9 +9,6 @@
 ;; A non-version-controlled file in a subdirectory of the emacs config dir
 ;; For local setup. Gets loaded after the 'general' setup files in
 ;; emacs-config/dir
-(defvar emacs-config/local-dir (concat emacs-config/dir "local/"))
-(defvar emacs-config/local-file
-  (concat emacs-config/local-dir "setup-local.org"))
 ;; The directory where the actual elisp files are stored
 (defvar emacs-config/elisp-dir (concat emacs-config/dir "elisp/"))
 ;; What org-mode property marks a file as emacs config
@@ -22,10 +19,9 @@
 
 (defvar emacs-config/languages '("emacs-lisp" "elisp"))
 
-(defun has-local-config ()
-  "Returns non-nil if the file
-`emacs-config/dir'/local/setup-local.org exists."
-  (file-exists-p emacs-config/local-file))
+;; Set up an emacs-config-marker variable that may be used in a snippet to set
+;; up emacs-config files
+(defvar emacs-config-marker (concat "#+PROPERTY: " emacs-config/property-key " " (car (car emacs-config/file-type-map))))
 
 (defmacro infile-no-traces (file &rest body)
   `(let ((no-traces|visited-p (get-file-buffer (expand-file-name ,file)))

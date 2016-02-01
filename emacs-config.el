@@ -60,6 +60,7 @@ the `emacs-config/elisp-dir` first."
                          '())))
     (mapc #'emacs-config/tangle-file (append general-config local-config))))
 
+;;;###autoload
 (defun emacs-config/init ()
   "Add the folder with the tangled & compiled org-files
 to the load-path"
