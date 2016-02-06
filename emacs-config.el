@@ -4,6 +4,7 @@
 (defun emacs-config/tangle (target)
   (org-babel-tangle nil target))
 
+;;;###autoload
 (defun emacs-config/tangle-file
     (file &optional quiet-error-p quiet-success-p keep-el-p)
   "Tangles given org-file to an elisp file in `emacs-config/elisp-dir`
@@ -38,6 +39,7 @@ Also byte-compiles it"
                         (emacs-config/tangle-file (buffer-file-name) t))
                       nil 'make-it-local)))
 
+;;;###autoload
 (defun emacs-config/compile (&optional delete-old-p)
   "Tangle all org mode files in the `emacs-config/dir`
 to compiled elisp-files in the `emacs-config/elisp-dir`
