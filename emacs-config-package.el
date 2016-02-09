@@ -1,6 +1,4 @@
 (require 'emacs-config-base)
-(require 'org)
-(require 'ox)
 
 (defvar emacs-config/package|package-tag ":use-package")
 (defvar emacs-config/package|keys

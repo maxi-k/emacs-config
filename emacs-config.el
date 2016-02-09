@@ -1,5 +1,4 @@
 (require 'emacs-config-base)
-(require 'emacs-config-package)
 
 (defun emacs-config/tangle (target)
   (org-babel-tangle nil target))
@@ -10,6 +9,11 @@
   "Tangles given org-file to an elisp file in `emacs-config/elisp-dir`
 if it is marked as emacs-config/file (#+PROPERTIES my-file-type emacs-config)
 Also byte-compiles it"
+  ;; Required for org tangling files¥
+  (require 'org)
+  (require 'ob-tangle)
+  (require 'ox)
+  (require 'emacs-config-package)
   (infile-no-traces file
     (let* ((file-type (assoc emacs-config/property-key org-file-properties))
            (config-type (assoc (cdr file-type)
@@ -23,7 +27,7 @@ Also byte-compiles it"
             (funcall (cdr config-type) target)
             (byte-compile-file target nil)
             ;; Delete the .el file, only keep the .elc file
-            (unless keep-el-p (delete-file target))
+            ;; (unless keep-el-p (delete-file target))
             (unless quiet-success-p
               (message (concat "Compiled and loaded " target))))
         (unless quiet-error-p

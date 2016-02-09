@@ -1,6 +1,3 @@
-;; Required for org tangling files
-(require 'org)
-(require 'ob-tangle)
 
 ;; Should be ~/.emacs.d/user/
 ;; The base directory where all configuration takes place
