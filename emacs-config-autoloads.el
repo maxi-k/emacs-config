@@ -3,7 +3,7 @@
 ;;; Code:
 
 
-;;;### (autoloads nil "emacs-config" "emacs-config.el" (22197 12563
+;;;### (autoloads nil "emacs-config" "emacs-config.el" (22213 40283
 ;;;;;;  0 0))
 ;;; Generated autoloads from emacs-config.el
 
@@ -31,8 +31,20 @@ to the load-path
 
 ;;;***
 
+;;;### (autoloads nil "emacs-config-base" "emacs-config-base.el"
+;;;;;;  (22213 40394 0 0))
+;;; Generated autoloads from emacs-config-base.el
+
+(autoload 'has-local-config "emacs-config-base" "\
+Returns non-nil if the file
+`emacs-config/dir'/local/setup-local.org exists.
+
+\(fn)" nil nil)
+
+;;;***
+
 ;;;### (autoloads nil "emacs-config-package" "emacs-config-package.el"
-;;;;;;  (22196 35202 0 0))
+;;;;;;  (22200 52546 0 0))
 ;;; Generated autoloads from emacs-config-package.el
 
 (autoload 'emacs-config/package/tangle "emacs-config-package" "\
@@ -42,8 +54,8 @@ to the load-path
 
 ;;;***
 
-;;;### (autoloads nil nil ("emacs-config-base.el" "emacs-config-loaddefs.el")
-;;;;;;  (22197 12566 897718 0))
+;;;### (autoloads nil nil ("emacs-config-loaddefs.el" "emacs-config-pkg.el")
+;;;;;;  (22213 40424 872468 0))
 
 ;;;***
 

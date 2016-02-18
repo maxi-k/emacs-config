@@ -45,11 +45,11 @@ Also byte-compiles it"
 
 ;;;###autoload
 (defun emacs-config/compile (&optional delete-old-p)
-  "Tangle all org mode files in the `emacs-config/dir`
-to compiled elisp-files in the `emacs-config/elisp-dir`
-and load them.
-If called with a prefix argument, deletes the content of
-the `emacs-config/elisp-dir` first."
+  "Tangle all org mode files in the `emacs-config/dir` to
+compiled elisp-files in the `emacs-config/elisp-dir` and load
+them. Load the bootstrap file first, if it exists. Load the
+local-config last. If called with a prefix argument, deletes the
+content of the `emacs-config/elisp-dir` first."
   (interactive "P")
   ;; If called with prefix argument, the old elisp
   ;; directory is deleted first
@@ -64,6 +64,10 @@ the `emacs-config/elisp-dir` first."
          (local-config (if (has-local-config)
                            (directory-files emacs-config/local-dir t "\\.org$")
                          '())))
+    (when (emacs-config/has-bootstrap-file)
+        (emacs-config/tangle-file emacs-config/bootstrap-file)
+        (require (intern
+                  (file-name-base emacs-config/bootstrap-file))))
     (mapc #'emacs-config/tangle-file (append general-config local-config))))
 
 ;;;###autoload
