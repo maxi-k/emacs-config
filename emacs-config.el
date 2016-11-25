@@ -9,7 +9,7 @@
   "Tangles given org-file to an elisp file in `emacs-config/elisp-dir`
 if it is marked as emacs-config/file (#+PROPERTIES my-file-type emacs-config)
 Also byte-compiles it"
-  ;; Required for org tangling files¥
+  ;; Required for org tangling files
   (require 'org)
   (require 'ob-tangle)
   (require 'ox)
@@ -27,21 +27,15 @@ Also byte-compiles it"
             (funcall (cdr config-type) target)
             (byte-compile-file target nil)
             ;; Delete the .el file, only keep the .elc file
-            ;; (unless keep-el-p (delete-file target))
+            (unless keep-el-p (delete-file target))
             (unless quiet-success-p
               (message (concat "Compiled and loaded " target))))
         (unless quiet-error-p
           (message (concat "File was not an emacs config file: " file)))))))
 
-;; When in org mode, try to tangle the file
-;; if it is an emacs-config/file - whether it is
-;; is checked by `emacs-config/tangle-file`
-(add-hook 'org-mode-hook
-          (lambda ()
-            (add-hook 'after-save-hook
-                      (lambda ()
-                        (emacs-config/tangle-file (buffer-file-name) t))
-                      nil 'make-it-local)))
+(defun emacs-config/tangle-current-file (&optional show-errors-p)
+  (interactive "P")
+  (emacs-config/tangle-file (buffer-file-name) (not show-errors-p)))
 
 ;;;###autoload
 (defun emacs-config/compile (&optional delete-old-p)
